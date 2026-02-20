@@ -10,8 +10,7 @@
 ###########
 import sys
 from PySide6.QtWidgets import QApplication, QWidget, QTextEdit, QVBoxLayout, QPushButton
-
-
+import mipsconvert
 
 class Window:
     def __init__(self) -> None:
@@ -40,4 +39,4 @@ class Window:
         layout.addWidget(self.hexOutputBox)
         self.window.setLayout(layout)
         sys.exit(self.app.exec())
-Window()
+print(mipsconvert.convert("addi $t0, $zero, 5"))
