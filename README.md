@@ -26,4 +26,3 @@ python3.10 -m pip install -r requirements.txt
 ```
 python3.10 main.py
 ```
->>>>>>> 2e54afcffe28dac26a7b943729d8b160f0e3efa6
