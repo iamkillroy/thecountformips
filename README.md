@@ -1,5 +1,3 @@
-# thecountformips
-A simple assembler that is meant for quick assembly of small MIPS assembly segments for comparison
 # The Count - for MIPS
 A simple assembler-like program that is meant for quick assembly of small MIPS assembly segments to see how they look in hex.
 Just like Count Von Count from Sesame Street, this program will just count registers for MIPS instructions and convert them to the necessary hex.
@@ -7,4 +5,4 @@ This is not an actual assembler to create MIPS programs in, but just to view the
 # Releases
 Windows: 
 Mac OS:
-Linux: run it from source :(
+Fedora (ARM64):

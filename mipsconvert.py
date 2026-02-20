@@ -59,10 +59,21 @@ def convert(instructionString) ->int:
         case "J":
             return encodeJType(opcodeHex, int(partsOfInstruction[1]))
         case "I":
-            rt = register_map[partsOfInstruction[1].strip().replace(",", "")]
-            rs = register_map[partsOfInstruction[2].strip().replace(",", "")]
-            imm = int(partsOfInstruction[3].strip().replace(",", ""))
-            return encodeIType(opcodeHex, rs, rt, imm)
+                rt = register_map[partsOfInstruction[1].strip().replace(",", "")]
+
+                # Example: "0($t1)"
+                offset_base = partsOfInstruction[2].strip().replace(",", "")
+
+                # Split at '('
+                offset_str, base_part = offset_base.split("(")
+
+                # Remove ')'
+                base_reg = base_part.replace(")", "")
+
+                rs = register_map[base_reg]
+                imm = int(offset_str)
+
+                return encodeIType(opcodeHex, rs, rt, imm)
         case "R":
             instr = opcodeNamespace
             funct = opcodeData["funct"]
