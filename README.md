@@ -16,6 +16,7 @@ git clone https://www.github.com/iamkillroy/thecountformips.git
 ```
 python3.10 -m venv env
 source env/bin/activate
+python3.10 -m pip install -r requirements.txt
 ```
 
 <p>Finally, run main.py</p>
