@@ -11,7 +11,7 @@
 import sys
 from PySide6.QtWidgets import QApplication, QWidget, QTextEdit, QVBoxLayout, QPushButton
 import mipsconvert
-
+from PySide6.QtGui import QIcon
 class Window:
     def __init__(self) -> None:
         """Creates a Window object"""
@@ -19,9 +19,9 @@ class Window:
 
         #define window parent behavior
         self.window = QWidget()
-        self.window.setWindowTitle("The Count! for MIPS")
+        self.window.setWindowTitle("The Count! for MIPS - Convert MIPS to Hex")
         self.window.show()
-
+        self.window.setWindowIcon(QIcon("vampire.ico"))  # path to your icon file
         #input box
         self.mipsInputBox = QTextEdit()
         self.mipsInputBox.setPlaceholderText("Put MIPS here!")
