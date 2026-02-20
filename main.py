@@ -28,6 +28,7 @@ class Window:
 
         #convert button
         self.convertButton = QPushButton("Convert to hex!")
+        self.convertButton.clicked.connect(self.convertUpdate)
         #input box
         self.hexOutputBox = QTextEdit()
         self.hexOutputBox.setPlaceholderText("Output will be here...")
@@ -39,4 +40,17 @@ class Window:
         layout.addWidget(self.hexOutputBox)
         self.window.setLayout(layout)
         sys.exit(self.app.exec())
-print(mipsconvert.convert("addi $t0, $zero, 5"))
+    def convertUpdate(self):
+        """Converts the input to MIPS assembly"""
+        commandsInString = self.mipsInputBox.toPlainText()
+        commandsInList = commandsInString.split("\n")
+        newOutputString = ""
+        for command in commandsInList:
+            if len(command) == 0:
+                continue
+            hexOut = mipsconvert.convert(command)
+            newOutputString = newOutputString + f"0x{hexOut:08x}" + "\n"
+
+
+        self.hexOutputBox.setText(newOutputString)
+Window()
