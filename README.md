@@ -19,6 +19,7 @@ source env/bin/activate
 ```
 
 <p>Finally, run main.py</p>
+
 ```
 python3.10 main.py
 ```
