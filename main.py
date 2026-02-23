@@ -9,7 +9,7 @@
 # MODULES #
 ###########
 import sys
-from PySide6.QtWidgets import QApplication, QWidget, QTextEdit, QVBoxLayout, QPushButton
+from PySide6.QtWidgets import QApplication, QWidget, QTextEdit, QVBoxLayout, QPushButton, QMessageBox
 import mipsconvert
 from PySide6.QtGui import QIcon
 class Window:
@@ -32,7 +32,7 @@ class Window:
         #input box
         self.hexOutputBox = QTextEdit()
         self.hexOutputBox.setPlaceholderText("Output will be here...")
-
+        self.hexOutputBox.setReadOnly(True)
         #Add GUI elements
         layout = QVBoxLayout()
         layout.addWidget(self.mipsInputBox)
@@ -45,12 +45,16 @@ class Window:
         commandsInString = self.mipsInputBox.toPlainText()
         commandsInList = commandsInString.split("\n")
         newOutputString = ""
-        for command in commandsInList:
-            if len(command) == 0:
-                continue
-            hexOut = mipsconvert.convert(command)
-            newOutputString = newOutputString + f"0x{hexOut:08x}" + "\n"
-
+        whereInCommand = 0
+        try:
+            for command in commandsInList:
+                if len(command) == 0:
+                    continue
+                hexOut = mipsconvert.convert(command)
+                newOutputString = newOutputString + f"0x{hexOut:08x}" + "\n"
+                whereInCommand += 1
+        except Exception as e:
+            QMessageBox.critical(self.window, f"Error: Line {whereInCommand}", f"Error parsing line {whereInCommand}\n{commandsInList[whereInCommand]}\nException: {e}")
 
         self.hexOutputBox.setText(newOutputString)
 Window()
